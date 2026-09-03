@@ -1,5 +1,10 @@
+import 'dart:async';
+
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+part 'hero_carousel.dart';
 
 class HeroSection extends StatelessWidget {
   const HeroSection({super.key});
@@ -135,7 +140,7 @@ class _HeroCopy extends StatelessWidget {
 class _HeroBackgroundDecorations extends StatelessWidget {
   const _HeroBackgroundDecorations({required this.isCompact});
 
-  static const _decorationEdgeInset = 20.0;
+  static const _decorationEdgeInset = 60.0;
 
   final bool isCompact;
 
@@ -208,106 +213,6 @@ class _DiscoverButton extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class _HeroArtwork extends StatelessWidget {
-  const _HeroArtwork({this.isVertical = false, this.isCompact = false});
-
-  final bool isVertical;
-  final bool isCompact;
-
-  @override
-  Widget build(BuildContext context) {
-    final imageSize = isVertical ? 400.0 : (isCompact ? 500.0 : 600.0);
-
-    final content = Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        ConstrainedBox(
-          constraints: BoxConstraints(
-            maxWidth: imageSize,
-            maxHeight: imageSize,
-          ),
-          child: AspectRatio(
-            aspectRatio: 1,
-            child: Image.asset(
-              'assets/images/hero_image1.png',
-              fit: BoxFit.cover,
-              alignment: Alignment.center,
-              semanticLabel: 'RÜFÜS DU SOL band',
-            ),
-          ),
-        ),
-        const SizedBox(height: 25),
-        const _CarouselDots(),
-      ],
-    );
-
-    if (isVertical) {
-      return content;
-    }
-
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final badgeSize = isCompact ? 136.0 : 176.0;
-
-        return SizedBox.expand(
-          child: ColoredBox(
-            color: const Color(0xFFE8E8E8),
-            child: Stack(
-              clipBehavior: Clip.none,
-              fit: StackFit.expand,
-              children: [
-                Center(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: isCompact ? 40 : 60,
-                      vertical: 42,
-                    ),
-                    child: content,
-                  ),
-                ),
-                Positioned(
-                  left: -(badgeSize / 2),
-                  top: constraints.maxHeight * 0.6,
-                  child: SvgPicture.asset(
-                    'assets/images/badge.svg',
-                    width: badgeSize,
-                    height: badgeSize,
-                    semanticsLabel: 'Join now',
-                  ),
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
-}
-
-class _CarouselDots extends StatelessWidget {
-  const _CarouselDots();
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        for (var index = 0; index < 3; index++) ...[
-          Container(
-            width: 10,
-            height: 10,
-            decoration: BoxDecoration(
-              color: index == 0 ? Colors.black : const Color(0xFFA3A3A3),
-              shape: BoxShape.circle,
-            ),
-          ),
-          if (index < 2) const SizedBox(width: 25),
-        ],
-      ],
     );
   }
 }

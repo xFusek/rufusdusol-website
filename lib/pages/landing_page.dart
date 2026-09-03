@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rufusdusol_website/widgets/hero_section.dart';
-import 'package:rufusdusol_website/widgets/landing_header.dart';
+import 'package:rufusdusol_website/widgets/landing/contact/contact_section.dart';
+import 'package:rufusdusol_website/widgets/landing/hero/hero_section.dart';
+import 'package:rufusdusol_website/widgets/common/landing_header.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
@@ -11,6 +12,8 @@ class LandingPage extends StatefulWidget {
 
 class _LandingPageState extends State<LandingPage> {
   static const _responsiveBreakpoint = 1024.0;
+
+  final _contactSectionKey = GlobalKey();
 
   bool _isMenuOpen = false;
   String _selectedNavigationItem = 'Home';
@@ -24,6 +27,22 @@ class _LandingPageState extends State<LandingPage> {
       _selectedNavigationItem = item;
       _isMenuOpen = false;
     });
+
+    if (item == 'Contact') {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+
+        final sectionContext = _contactSectionKey.currentContext;
+        if (sectionContext == null) return;
+
+        Scrollable.ensureVisible(
+          sectionContext,
+          duration: const Duration(milliseconds: 700),
+          curve: Curves.easeInOutCubic,
+          alignment: 0,
+        );
+      });
+    }
   }
 
   @override
@@ -39,8 +58,15 @@ class _LandingPageState extends State<LandingPage> {
               Column(
                 children: [
                   SizedBox(height: headerHeight),
-                  const Expanded(
-                    child: SingleChildScrollView(child: HeroSection()),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          const HeroSection(),
+                          ContactSection(key: _contactSectionKey),
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),
