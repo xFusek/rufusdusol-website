@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:rufusdusol_website/widgets/common/section_divider.dart';
+import 'package:rufusdusol_website/widgets/landing/about/about_section.dart';
 import 'package:rufusdusol_website/widgets/landing/contact/contact_section.dart';
 import 'package:rufusdusol_website/widgets/landing/hero/hero_section.dart';
 import 'package:rufusdusol_website/widgets/common/landing_header.dart';
@@ -13,6 +15,7 @@ class LandingPage extends StatefulWidget {
 class _LandingPageState extends State<LandingPage> {
   static const _responsiveBreakpoint = 1024.0;
 
+  final _aboutSectionKey = GlobalKey();
   final _contactSectionKey = GlobalKey();
 
   bool _isMenuOpen = false;
@@ -29,20 +32,26 @@ class _LandingPageState extends State<LandingPage> {
     });
 
     if (item == 'Contact') {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (!mounted) return;
-
-        final sectionContext = _contactSectionKey.currentContext;
-        if (sectionContext == null) return;
-
-        Scrollable.ensureVisible(
-          sectionContext,
-          duration: const Duration(milliseconds: 700),
-          curve: Curves.easeInOutCubic,
-          alignment: 0,
-        );
-      });
+      _scrollToSection(_contactSectionKey);
+    } else if (item == 'About Us') {
+      _scrollToSection(_aboutSectionKey);
     }
+  }
+
+  void _scrollToSection(GlobalKey sectionKey) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+
+      final sectionContext = sectionKey.currentContext;
+      if (sectionContext == null) return;
+
+      Scrollable.ensureVisible(
+        sectionContext,
+        duration: const Duration(milliseconds: 700),
+        curve: Curves.easeInOutCubic,
+        alignment: 0,
+      );
+    });
   }
 
   @override
@@ -63,6 +72,9 @@ class _LandingPageState extends State<LandingPage> {
                       child: Column(
                         children: [
                           const HeroSection(),
+                          const SectionDivider(),
+                          AboutSection(key: _aboutSectionKey),
+                          const SectionDivider(),
                           ContactSection(key: _contactSectionKey),
                         ],
                       ),
