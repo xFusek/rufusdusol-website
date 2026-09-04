@@ -4,6 +4,7 @@ import 'package:rufusdusol_website/widgets/landing/about/about_section.dart';
 import 'package:rufusdusol_website/widgets/landing/contact/contact_section.dart';
 import 'package:rufusdusol_website/widgets/landing/hero/hero_section.dart';
 import 'package:rufusdusol_website/widgets/landing/members/members_section.dart';
+import 'package:rufusdusol_website/widgets/landing/tickets/tickets_section.dart';
 import 'package:rufusdusol_website/widgets/common/landing_header.dart';
 
 class LandingPage extends StatefulWidget {
@@ -19,6 +20,7 @@ class _LandingPageState extends State<LandingPage> {
   final _aboutSectionKey = GlobalKey();
   final _contactSectionKey = GlobalKey();
   final _membersSectionKey = GlobalKey();
+  final _ticketsSectionKey = GlobalKey();
 
   bool _isMenuOpen = false;
   String _selectedNavigationItem = 'Home';
@@ -39,6 +41,8 @@ class _LandingPageState extends State<LandingPage> {
       _scrollToSection(_aboutSectionKey);
     } else if (item == 'Members') {
       _scrollToSection(_membersSectionKey);
+    } else if (item == 'Tickets') {
+      _scrollToSection(_ticketsSectionKey);
     }
   }
 
@@ -81,6 +85,7 @@ class _LandingPageState extends State<LandingPage> {
                           const SectionDivider(),
                           MembersSection(key: _membersSectionKey),
                           const SectionDivider(),
+                          TicketsSection(key: _ticketsSectionKey),
                           ContactSection(key: _contactSectionKey),
                         ],
                       ),
