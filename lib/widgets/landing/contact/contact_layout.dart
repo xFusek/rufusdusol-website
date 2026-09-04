@@ -1,39 +1,63 @@
 part of 'contact_section.dart';
 
 class _DesktopFooterContent extends StatelessWidget {
-  const _DesktopFooterContent();
+  const _DesktopFooterContent({
+    required this.musicController,
+    required this.isMusicPlaying,
+    required this.onMusicPressed,
+  });
+
+  final YoutubePlayerController? musicController;
+  final bool isMusicPlaying;
+  final VoidCallback onMusicPressed;
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Expanded(child: _ContactDetails()),
+        const Expanded(child: _ContactDetails()),
         Expanded(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24),
-            child: BackgroundMusic(),
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: BackgroundMusic(
+              controller: musicController,
+              isPlaying: isMusicPlaying,
+              onMusicPressed: onMusicPressed,
+            ),
           ),
         ),
-        Expanded(child: _FooterLinks()),
+        const Expanded(child: _FooterLinks()),
       ],
     );
   }
 }
 
 class _MobileFooterContent extends StatelessWidget {
-  const _MobileFooterContent();
+  const _MobileFooterContent({
+    required this.musicController,
+    required this.isMusicPlaying,
+    required this.onMusicPressed,
+  });
+
+  final YoutubePlayerController? musicController;
+  final bool isMusicPlaying;
+  final VoidCallback onMusicPressed;
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        _ContactDetails(centered: true),
-        SizedBox(height: 40),
-        BackgroundMusic(),
-        SizedBox(height: 40),
-        _FooterLinks(centered: true),
+        const _ContactDetails(centered: true),
+        const SizedBox(height: 40),
+        BackgroundMusic(
+          controller: musicController,
+          isPlaying: isMusicPlaying,
+          onMusicPressed: onMusicPressed,
+        ),
+        const SizedBox(height: 40),
+        const _FooterLinks(centered: true),
       ],
     );
   }

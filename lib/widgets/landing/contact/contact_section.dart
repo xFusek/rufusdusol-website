@@ -1,14 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rufusdusol_website/widgets/common/background_music.dart';
+import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 part 'contact_layout.dart';
 part 'contact_links.dart';
 
 class ContactSection extends StatelessWidget {
-  const ContactSection({super.key});
+  const ContactSection({
+    required this.musicController,
+    required this.isMusicPlaying,
+    required this.onMusicPressed,
+    super.key,
+  });
 
   static const _responsiveBreakpoint = 1180.0;
+
+  final YoutubePlayerController? musicController;
+  final bool isMusicPlaying;
+  final VoidCallback onMusicPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +41,17 @@ class ContactSection extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     if (useVerticalLayout)
-                      const _MobileFooterContent()
+                      _MobileFooterContent(
+                        musicController: musicController,
+                        isMusicPlaying: isMusicPlaying,
+                        onMusicPressed: onMusicPressed,
+                      )
                     else
-                      const _DesktopFooterContent(),
+                      _DesktopFooterContent(
+                        musicController: musicController,
+                        isMusicPlaying: isMusicPlaying,
+                        onMusicPressed: onMusicPressed,
+                      ),
                     const SizedBox(height: 45),
                     const Text(
                       '© 2025 RÜFÜS DU SOL.\nAll Rights Reserved.',

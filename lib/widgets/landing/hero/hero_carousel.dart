@@ -1,69 +1,18 @@
-part of 'hero_section.dart';
+import 'dart:async';
 
-class _HeroArtwork extends StatelessWidget {
-  const _HeroArtwork({this.isVertical = false, this.isCompact = false});
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
 
-  final bool isVertical;
-  final bool isCompact;
-
-  @override
-  Widget build(BuildContext context) {
-    final imageSize = isVertical ? 400.0 : (isCompact ? 500.0 : 600.0);
-    final content = _HeroCarousel(maximumImageSize: imageSize);
-
-    if (isVertical) {
-      return content;
-    }
-
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final badgeSize = isCompact ? 136.0 : 176.0;
-
-        return SizedBox.expand(
-          child: ColoredBox(
-            color: const Color(0xFFE8E8E8),
-            child: Stack(
-              clipBehavior: Clip.none,
-              fit: StackFit.expand,
-              children: [
-                Center(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: isCompact ? 40 : 60,
-                      vertical: 42,
-                    ),
-                    child: content,
-                  ),
-                ),
-                Positioned(
-                  left: -(badgeSize / 2),
-                  top: constraints.maxHeight * 0.6,
-                  child: SvgPicture.asset(
-                    'assets/images/badge.svg',
-                    width: badgeSize,
-                    height: badgeSize,
-                    semanticsLabel: 'Join now',
-                  ),
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
-}
-
-class _HeroCarousel extends StatefulWidget {
-  const _HeroCarousel({required this.maximumImageSize});
+class HeroCarousel extends StatefulWidget {
+  const HeroCarousel({required this.maximumImageSize, super.key});
 
   final double maximumImageSize;
 
   @override
-  State<_HeroCarousel> createState() => _HeroCarouselState();
+  State<HeroCarousel> createState() => _HeroCarouselState();
 }
 
-class _HeroCarouselState extends State<_HeroCarousel> {
+class _HeroCarouselState extends State<HeroCarousel> {
   static const _slideDuration = Duration(milliseconds: 600);
   static const _automaticChangeInterval = Duration(seconds: 5);
   static const _images = [
@@ -87,9 +36,7 @@ class _HeroCarouselState extends State<_HeroCarousel> {
   }
 
   void _showNextImage() {
-    if (!mounted || !_pageController.hasClients) {
-      return;
-    }
+    if (!mounted || !_pageController.hasClients) return;
 
     final nextIndex = (_currentIndex + 1) % _images.length;
     _pageController.animateToPage(
@@ -100,9 +47,7 @@ class _HeroCarouselState extends State<_HeroCarousel> {
   }
 
   void _showImage(int index) {
-    if (!_pageController.hasClients || index == _currentIndex) {
-      return;
-    }
+    if (!_pageController.hasClients || index == _currentIndex) return;
 
     _pageController.animateToPage(
       index,
