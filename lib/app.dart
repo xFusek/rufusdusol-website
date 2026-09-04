@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rufusdusol_website/pages/landing_page.dart';
+import 'package:rufusdusol_website/landing/landing_page.dart';
 
 class RufusDuSolApp extends StatelessWidget {
   const RufusDuSolApp({super.key});

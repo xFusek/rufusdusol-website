@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rufusdusol_website/widgets/landing/hero/hero_artwork.dart';
-import 'package:rufusdusol_website/widgets/landing/hero/hero_copy.dart';
-import 'package:rufusdusol_website/widgets/landing/hero/music_badge.dart';
+import 'package:rufusdusol_website/landing/sections/hero/hero_artwork.dart';
+import 'package:rufusdusol_website/landing/sections/hero/hero_copy.dart';
+import 'package:rufusdusol_website/landing/sections/hero/music_badge.dart';
 
 class HeroSection extends StatelessWidget {
   const HeroSection({

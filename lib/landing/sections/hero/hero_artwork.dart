@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rufusdusol_website/widgets/landing/hero/hero_carousel.dart';
+import 'package:rufusdusol_website/landing/sections/hero/hero_carousel.dart';
 
 class HeroArtwork extends StatelessWidget {
   const HeroArtwork({

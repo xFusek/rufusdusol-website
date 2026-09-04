@@ -1,13 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:rufusdusol_website/widgets/common/section_divider.dart';
-import 'package:rufusdusol_website/widgets/landing/about/about_section.dart';
-import 'package:rufusdusol_website/widgets/landing/contact/contact_section.dart';
-import 'package:rufusdusol_website/widgets/landing/hero/hero_section.dart';
-import 'package:rufusdusol_website/widgets/landing/members/members_section.dart';
-import 'package:rufusdusol_website/widgets/landing/tickets/tickets_section.dart';
-import 'package:rufusdusol_website/widgets/common/landing_header.dart';
+import 'package:rufusdusol_website/landing/shared/section_divider.dart';
+import 'package:rufusdusol_website/landing/sections/about/about_section.dart';
+import 'package:rufusdusol_website/landing/sections/contact/contact_section.dart';
+import 'package:rufusdusol_website/landing/sections/hero/hero_section.dart';
+import 'package:rufusdusol_website/landing/sections/members/members_section.dart';
+import 'package:rufusdusol_website/landing/sections/tickets/tickets_section.dart';
+import 'package:rufusdusol_website/landing/shared/landing_header.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 

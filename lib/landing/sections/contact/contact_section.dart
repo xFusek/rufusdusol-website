@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:rufusdusol_website/widgets/common/background_music.dart';
+import 'package:rufusdusol_website/landing/shared/background_music.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 part 'contact_layout.dart';

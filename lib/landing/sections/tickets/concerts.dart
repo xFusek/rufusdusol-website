@@ -1,4 +1,4 @@
-import 'package:rufusdusol_website/models/concert.dart';
+import 'package:rufusdusol_website/landing/sections/tickets/concert.dart';
 
 const concerts = [
   Concert(

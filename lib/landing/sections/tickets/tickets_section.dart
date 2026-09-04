@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:rufusdusol_website/data/concerts.dart';
-import 'package:rufusdusol_website/models/concert.dart';
+import 'package:rufusdusol_website/landing/sections/tickets/concert.dart';
+import 'package:rufusdusol_website/landing/sections/tickets/concerts.dart';
 
 part 'concert_row.dart';
 
